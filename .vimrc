@@ -12,6 +12,20 @@ if v:progname =~? "evim"
   finish
 endif
 
+" Start of Vundle
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'vim-pandoc/vim-pandoc'
+
+call vundle#end()
+filetype plugin indent on
+" End of Vundle
+
 " Get the defaults that most users want. Warning: This line breaks git vi.
 " source $VIMRUNTIME/defaults.vim
 

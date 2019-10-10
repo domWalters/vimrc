@@ -182,6 +182,8 @@ endif
 " Other Settings
 
 set list
+
+" Line Numbering
 set number
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
@@ -196,3 +198,6 @@ set listchars=tab:>-
 " Uncomment this for tabs that are 4 spaces wide, not shown in editor, and are actually 4 spaces (not \t)
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
+" YCM Config
+
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'

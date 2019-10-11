@@ -9,7 +9,8 @@ while test $# -gt 0; do
             echo "-h, --help            show this prompt"
             echo "-v <os>, --vim <os>   install vim from source for <os> in this scripts directory"
             echo "-e, --env             set up environment settings"
-            echo "-a <os>, --all <os>   ./setup.sh --vim <os> --env"
+            echo "-c, --clean           delete vim/ directory (intended to be used after install completes)"
+            echo "-a <os>, --all <os>   ./setup.sh --vim <os> --env --clean"
             exit 0
             ;;
         -v|--vim) #this setting is expected to be followed by an OS (centos, or ubuntu)
@@ -58,9 +59,13 @@ while test $# -gt 0; do
             python3 install.py --clang-completer
             shift
             ;;
+        -c|--clean)
+            rm -rf vim/
+            shift
+            ;;
         -a|--all) #this setting is expected to be followed by an OS (centos, or ubuntu)
             shift
-            ./setup.sh --vim $1 --env
+            ./setup.sh --vim $1 --env --clean
             echo "Installation complete!"
             exit 0;
             ;;

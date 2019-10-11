@@ -40,10 +40,7 @@ while test $# -gt 0; do
                         --enable-cscope --prefix=/usr/local
             make VIMRUNTIME=/usr/local/share/vim/vim81
             sudo make install
-            git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-            vim +PluginInstall +qall
-            cd ~/.vim/bundle/YouCompleteMe
-            python3 install.py --all
+            git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim | true
             ;;
         -e|--env)
             sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
@@ -55,11 +52,16 @@ while test $# -gt 0; do
             cp .ycm_extra_conf.py ~/.
             # Set git editor to vim, install vundle if not installed
             git config --global core.editor "vim"    
+            # Setup YCM
+            vim +PluginInstall +qall
+            cd ~/.vim/bundle/YouCompleteMe
+            python3 install.py --clang-completer
             shift
             ;;
         -a|--all) #this setting is expected to be followed by an OS (centos, or ubuntu)
             shift
             ./setup.sh --vim $1 --env
+            echo "Installation complete!"
             exit 0;
             ;;
         *)

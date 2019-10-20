@@ -195,9 +195,9 @@ highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE gui
 " set shiftwidth=4
 set listchars=tab:>-
 
-" Uncomment this for tabs that are 4 spaces wide, not shown in editor, and are actually 4 spaces (not \t)
-set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+" Uncomment this for tabs that are 2 spaces wide, not shown in editor, and are actually 2 spaces (not \t)
+set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 
 " YCM Config
 
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'

@@ -52,7 +52,6 @@ while test $# -gt 0; do
             sudo update-alternatives --set vi /usr/local/bin/vim
             # Copy vimrc and ycm_conf to home directory
             cp .vimrc ~/.
-            cp .ycm_extra_conf.py ~/.
             # Set git editor to vim, install vundle if not installed
             git config --global core.editor "vim"    
             shift

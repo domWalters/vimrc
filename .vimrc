@@ -196,7 +196,7 @@ highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE gui
 set listchars=tab:>-
 
 " Uncomment this for tabs that are 4 spaces wide, not shown in editor, and are actually 4 spaces (not \t)
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " YCM Config
 

@@ -3,5 +3,5 @@ The intended use of this repo, is for it to be cloned somewhere onto the users s
 ```bash
 git clone https://github.com/domWalters/vimrc
 cd vimrc
-chmod +x setup.sh && ./setup.sh
+chmod +x setup.sh && ./setup.sh --help
 ```

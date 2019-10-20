@@ -200,4 +200,4 @@ set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 
 " YCM Config
 
-" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'

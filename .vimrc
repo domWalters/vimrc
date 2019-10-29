@@ -179,25 +179,22 @@ if has('syntax') && has('eval')
   packadd! matchit
 endif
 
-" Other Settings
-
-set list
-
 " Line Numbering
 set number
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 " Tab and Indent Settings
-
-" Uncomment this for tabs that are 4 spaces wide, shown in editor, and are actually \t (not 4 spaces)
-" set tabstop=4
-" set softtabstop=0 noexpandtab
-" set shiftwidth=4
 set listchars=tab:>-
-
-" Uncomment this for tabs that are 2 spaces wide, not shown in editor, and are actually 2 spaces (not \t)
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 
-" YCM Config
 
+" YCM Config
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+
+" Other Settings
+set list
+
+" Binds to prevent accidental shift keying of saving and closing
+command W w
+command Q q
+command WQ wq

@@ -187,6 +187,38 @@ highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE gui
 set listchars=tab:>-
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 
+" File Tree
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 15
+let g:netrw_list_hide = '.*\.swp$,.*\.*\~$,*\~$'
+set autochdir
+augroup ProjectDrawer
+  autocmd!
+  autocmd VimEnter * :Lexplore
+augroup END
+
+" Toggle Lexplore with Ctrl-E
+let g:NetrwIsOpen=1
+
+function! ToggleNetrw()
+  if g:NetrwIsOpen
+    let i = bufnr("$")
+    while (i >= 1)
+      if (getbufvar(i, "&filetype") == "netrw")
+        silent exe "bwipeout " . i
+      endif
+      let i-=1
+    endwhile
+    let g:NetrwIsOpen=0
+  else
+    let g:NetrwIsOpen=1
+    silent Lexplore
+  endif
+endfunction
+map <silent> <C-E> :call ToggleNetrw()<CR>
 
 " YCM Config
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'

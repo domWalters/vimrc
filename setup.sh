@@ -38,11 +38,10 @@ while test $# -gt 0; do
       ./configure --with-features=huge --enable-multibyte --enable-rubyinterp=yes \
                   --enable-pythoninterp=yes --with-python-config-dir=$dir_start/python2.7/config \
                   --enable-python3interp=yes --with-python3-config-dir=$dir_start/python3.4/config \
-                  --enable-perlintep=yes --enable-luainterp=yes --enable-gui=gtk2 \
-                  --enable-cscope --prefix=/usr/local
+                  --enable-perlintep=yes --enable-luainterp=yes --enable-gui=auto \
+                  --enable-gtk2-check --enable-cscope --with-x --prefix=/usr/local
       make VIMRUNTIME=/usr/local/share/vim/vim81
       sudo make install
-      git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim | true
       ;;
     -e|--env)
       sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
@@ -56,6 +55,7 @@ while test $# -gt 0; do
       shift
       ;;
     -y|--ycm)
+      git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim | true
       # Setup YCM
       vim +PluginInstall +qall
       cd ~/.vim/bundle/YouCompleteMe

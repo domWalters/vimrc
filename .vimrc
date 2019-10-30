@@ -178,6 +178,11 @@ set ttimeoutlen=100             " wait up to 100ms after Esc for special key
 set display=truncate            " Show @@@ in the last line if it is truncated.
 set scrolloff=5                 " Always show 5 lines around the cursor
 
+" Fold Settings
+set foldmethod=indent           " Automatically generate folds based on indenting
+set foldcolumn=1                " Show where open folds are
+set foldlevelstart=99
+
 " File Tree
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3

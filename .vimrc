@@ -147,7 +147,9 @@ endif
 " Line Settings
 set number              " Show line numbers
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+set cursorline          " Highlight the line the cursor is on
 set ruler
+set laststatus=2
 
 " Tab and Indent Settings
 set listchars=tab:>-    " Show \t as >-
@@ -180,9 +182,16 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 15
 let g:netrw_list_hide = '.*\.swp$,.*\.*\~$,*\~$'
 set autochdir
+
 augroup ProjectDrawer
   autocmd!
   autocmd VimEnter * :Lexplore
+augroup END
+
+augroup closeNetrwIfLastBuffer
+  au!
+  autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" || &buftype == 'quickfix' |q|endif
+  nmap - :Lexplore<CR>
 augroup END
 
 " Toggle Lexplore with Ctrl-E

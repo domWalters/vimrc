@@ -48,6 +48,8 @@ while test $# -gt 0; do
       sudo update-alternatives --set editor /usr/local/bin/vim
       sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
       sudo update-alternatives --set vi /usr/local/bin/vim
+      sudo update-alternatives --install /usr/bin/vim vim /usr/local/bin/vim 1
+      sudo update-alternatives --set vim /usr/local/bin/vim
       # Copy vimrc and ycm_conf to home directory
       cp .vimrc ~/.
       # Set git editor to vim, install vundle if not installed

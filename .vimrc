@@ -151,7 +151,12 @@ set ruler
 
 " Tab and Indent Settings
 set listchars=tab:>-    " Show \t as >-
-set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
+set tabstop=2           " Indent with 2 spaces
+set softtabstop=2       " Backspace deletes 2 spaces if possible
+set expandtab           " Tabs to spaces
+set shiftwidth=2        " Use 2 spaces when shifting (>>)
+set autoindent          " New lines inherit indent level
+set smarttab            " Insert tabstop spaces when tab pressed
 
 " Other Settings
 set list

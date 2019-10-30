@@ -97,9 +97,7 @@ if 1
       \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
       \ |   exe "normal! g`\""
       \ | endif
-
   augroup END
-
 endif
 
 " Convenient command to see the difference between the current buffer and the
@@ -108,7 +106,7 @@ endif
 " Revert with: ":delcommand DiffOrig".
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+        \ | wincmd p | diffthis
 endif
 
 if has('langmap') && exists('+langremap')
@@ -152,7 +150,6 @@ set ruler
 set laststatus=2
 
 " Tab and Indent Settings
-set listchars=tab:>-    " Show \t as >-
 set tabstop=2           " Indent with 2 spaces
 set softtabstop=2       " Backspace deletes 2 spaces if possible
 set expandtab           " Tabs to spaces
@@ -160,8 +157,15 @@ set shiftwidth=2        " Use 2 spaces when shifting (>>)
 set autoindent          " New lines inherit indent level
 set smarttab            " Insert tabstop spaces when tab pressed
 
-" Other Settings
+" List chars
+set listchars=tab:>-,eol:¬,trail:⌴,extends:>,precedes:<,space:·" Show \t as >-
+highlight SpecialKey term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+noremap <F5> :set list!<CR>
+inoremap <F5> <C-o>:set list!<CR>
+cnoremap <F5> <C-c>:set list!<CR>
 set list
+
+" Other Settings
 set dir=~/.cache/vim            " Place swaps here
 set backupdir=~/.cache/vim      " Place backups here
 set undodir=~/.cache/vim        " Place undo files here
@@ -183,10 +187,10 @@ let g:netrw_winsize = 15
 let g:netrw_list_hide = '.*\.swp$,.*\.*\~$,*\~$'
 set autochdir
 
-augroup ProjectDrawer
-  autocmd!
-  autocmd VimEnter * :Lexplore
-augroup END
+"augroup ProjectDrawer
+"  autocmd!
+"  autocmd VimEnter * :Lexplore
+"augroup END
 
 augroup closeNetrwIfLastBuffer
   au!
@@ -210,6 +214,7 @@ function! ToggleNetrw()
   else
     let g:NetrwIsOpen=1
     silent Lexplore
+    set nolist
   endif
 endfunction
 map <silent> <C-E> :call ToggleNetrw()<CR>

@@ -1,10 +1,4 @@
 " My vimrc file.
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
 
 " When started as "evim", evim.vim will already have done these settings, bail
 " out.
@@ -43,23 +37,6 @@ silent! while 0
   set nocompatible
 silent! endwhile
 
-" Allow backspacing over everything in insert mode.
-set backspace=indent,eol,start
-
-set history=200		" keep 200 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set wildmenu		" display completion matches in a status line
-
-set ttimeout		" time out for key codes
-set ttimeoutlen=100	" wait up to 100ms after Esc for special key
-
-" Show @@@ in the last line if it is truncated.
-set display=truncate
-
-" Show a few lines of context around the cursor.  Note that this makes the
-" text scroll if you mouse-click near the start or end of the window.
-set scrolloff=5
 
 " Do incremental searching when it's possible to timeout.
 if has('reltime')
@@ -93,9 +70,8 @@ endif
 " Switch syntax highlighting on when the terminal has colors or when using the
 " GUI (which always has colors).
 if &t_Co > 2 || has("gui_running")
-  " Revert with ":syntax off".
+  set hlsearch " Switch on highlighting the last used search pattern.
   syntax on
-
   " I like highlighting strings inside C comments.
   " Revert with ":unlet c_comment_strings".
   let c_comment_strings=1
@@ -103,19 +79,16 @@ endif
 
 " Only do this part when Vim was compiled with the +eval feature.
 if 1
-
   " Enable file type detection.
   " Use the default filetype settings, so that mail gets 'tw' set to 72,
   " 'cindent' is on in C files, etc.
   " Also load indent files, to automatically do language-dependent indenting.
   " Revert with ":filetype off".
   filetype plugin indent on
-
   " Put these in an autocmd group, so that you can revert them with:
   " ":augroup vimStartup | au! | augroup END"
   augroup vimStartup
     au!
-
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid, when inside an event handler
     " (happens when dropping a file on gvim) and for a commit message (it's
@@ -145,8 +118,6 @@ if has('langmap') && exists('+langremap')
   set nolangremap
 endif
 
-" End of contents of defaults.vim
-
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
 else
@@ -156,15 +127,9 @@ else
   endif
 endif
 
-if &t_Co > 2 || has("gui_running")
-  " Switch on highlighting the last used search pattern.
-  set hlsearch
-endif
-
 " Put these in an autocmd group, so that we can delete them easily.
 augroup vimrcEx
   au!
-
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
 augroup END
@@ -179,13 +144,25 @@ if has('syntax') && has('eval')
   packadd! matchit
 endif
 
-" Line Numbering
-set number
+" Line Settings
+set number              " Show line numbers
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+set ruler
 
 " Tab and Indent Settings
-set listchars=tab:>-
+set listchars=tab:>-    " Show \t as >-
 set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
+
+" Other Settings
+set list
+set backspace=indent,eol,start  " Allow backspacing over everything in insert mode.
+set history=200                 " keep 200 lines of command line history
+set showcmd                     " display incomplete commands
+set wildmenu                    " display completion matches in a status line
+set ttimeout                    " time out for key codes
+set ttimeoutlen=100             " wait up to 100ms after Esc for special key
+set display=truncate            " Show @@@ in the last line if it is truncated.
+set scrolloff=5                 " Always show 5 lines around the cursor
 
 " File Tree
 let g:netrw_banner = 0
@@ -222,9 +199,6 @@ map <silent> <C-E> :call ToggleNetrw()<CR>
 
 " YCM Config
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-
-" Other Settings
-set list
 
 " Binds to prevent accidental shift keying of saving and closing
 command W w

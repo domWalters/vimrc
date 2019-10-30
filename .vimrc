@@ -160,6 +160,9 @@ set smarttab            " Insert tabstop spaces when tab pressed
 
 " Other Settings
 set list
+set dir=~/.cache/vim            " Place swaps here
+set backupdir=~/.cache/vim      " Place backups here
+set undodir=~/.cache/vim        " Place undo files here
 set backspace=indent,eol,start  " Allow backspacing over everything in insert mode.
 set history=200                 " keep 200 lines of command line history
 set showcmd                     " display incomplete commands

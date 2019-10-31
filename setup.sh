@@ -5,13 +5,15 @@ cd "${0%/*}"
 while test $# -gt 0; do
   case "$1" in
     -h|--help)
+      echo ""
       echo "options:"
-      echo "-h, --help            show this prompt"
-      echo "-v <os>, --vim <os>   install vim from source for <os> in this scripts directory"
-      echo "-e, --env             set up environment settings"
-      echo "-y, --ycm             set up plugins and YCM"
-      echo "-c, --clean           delete vim/ directory (intended to be used after install completes)"
-      echo "-a <os>, --all <os>   ./setup.sh --vim <os> --env --clean"
+      echo "-h,      --help       show this prompt"
+      echo "-v <os>, --vim <os>   install vim from source for <os> in $PWD"
+      echo "-e,      --env        set up environment settings"
+      echo "-y,      --ycm        set up plugins and YCM"
+      echo "-c,      --clean      delete vim/ directory"
+      echo "-a <os>, --all <os>   ./setup.sh --vim <os> --clean --env --ycm"
+      echo ""
       exit 0
       ;;
     -v|--vim) #this setting is expected to be followed by an OS (centos, or ubuntu)
@@ -44,15 +46,17 @@ while test $# -gt 0; do
       sudo make install
       ;;
     -e|--env)
+      # Set up all common vim, vi, and editor aliases
       sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
       sudo update-alternatives --set editor /usr/local/bin/vim
       sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
       sudo update-alternatives --set vi /usr/local/bin/vim
       sudo update-alternatives --install /usr/bin/vim vim /usr/local/bin/vim 1
       sudo update-alternatives --set vim /usr/local/bin/vim
-      # Copy vimrc and ycm_conf to home directory
       cp .vimrc ~/.
-      # Set git editor to vim, install vundle if not installed
+      # Set up directory for vim backups, swaps, and undos
+      mkdir ~/.cache/vim
+      # Set git editor to vim
       git config --global core.editor "vim"
       shift
       ;;
@@ -70,7 +74,7 @@ while test $# -gt 0; do
       ;;
     -a|--all) #this setting is expected to be followed by an OS (centos, or ubuntu)
       shift
-      ./setup.sh --vim $1 --env --ycm --clean
+      ./setup.sh --vim $1 --clean --env --ycm
       echo "Installation complete!"
       exit 0;
       ;;
@@ -80,3 +84,5 @@ while test $# -gt 0; do
       ;;
   esac
 done
+
+./setup.sh --help

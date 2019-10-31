@@ -7,17 +7,21 @@ while test $# -gt 0; do
     -h|--help)
       echo ""
       echo "options:"
-      echo "-h,      --help       show this prompt"
-      echo "-v <os>, --vim <os>   install vim from source for <os> in $PWD"
-      echo "-e,      --env        set up environment settings"
-      echo "-y,      --ycm        set up plugins and YCM"
-      echo "-c,      --clean      delete vim/ directory"
-      echo "-a <os>, --all <os>   ./setup.sh --vim <os> --clean --env --ycm"
+      echo "-h,      --help     : show this prompt"
+      echo "-g,      --get      : clone the vim git project locally"
+      echo "-v <os>, --vim <os> : configure, compile, and install vim from local source in $PWD/vim for <os>"
+      echo "-e,      --env      : set up environment settings"
+      echo "-y,      --ycm      : set up plugins and YCM"
+      echo "-c,      --clean    : delete local vim/ directory"
+      echo "-a <os>, --all <os> : ./setup.sh --get --vim <os> --clean --env --ycm"
       echo ""
       exit 0
       ;;
-    -v|--vim) #this setting is expected to be followed by an OS (centos, or ubuntu)
+    -g|--get)
       git clone https://github.com/vim/vim
+      shift
+      ;;
+    -v|--vim) #this setting is expected to be followed by an OS (centos, or ubuntu)
       cd vim
       shift
       if test $# -gt 0; then
@@ -53,11 +57,11 @@ while test $# -gt 0; do
       sudo update-alternatives --set vi /usr/local/bin/vim
       sudo update-alternatives --install /usr/bin/vim vim /usr/local/bin/vim 1
       sudo update-alternatives --set vim /usr/local/bin/vim
-      cp .vimrc ~/.
-      # Set up directory for vim backups, swaps, and undos
-      mkdir ~/.cache/vim
       # Set git editor to vim
       git config --global core.editor "vim"
+      # Set up .vimrc and backup/swap/undo directory.
+      cp .vimrc ~/.
+      mkdir ~/.cache/vim
       shift
       ;;
     -y|--ycm)
@@ -75,7 +79,7 @@ while test $# -gt 0; do
       ;;
     -a|--all) #this setting is expected to be followed by an OS (centos, or ubuntu)
       shift
-      ./setup.sh --vim $1 --clean --env --ycm
+      ./setup.sh --get --vim $1 --clean --env --ycm
       echo "Installation complete!"
       exit 0;
       ;;

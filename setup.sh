@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -o pipefail
 cd "${0%/*}"
 
 while test $# -gt 0; do
@@ -61,7 +61,8 @@ while test $# -gt 0; do
       shift
       ;;
     -y|--ycm)
-      git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim | true
+      # Install Vundle
+      git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
       # Setup YCM
       vim +PluginInstall +qall
       cd ~/.vim/bundle/YouCompleteMe

@@ -44,7 +44,7 @@ while test $# -gt 0; do
       ./configure --with-features=huge --enable-multibyte --enable-rubyinterp=yes \
                   --enable-pythoninterp=yes --with-python-config-dir=$dir_start/python2.7/config \
                   --enable-python3interp=yes --with-python3-config-dir=$dir_start/python3.4/config \
-                  --enable-perlintep=yes --enable-luainterp=yes --enable-gui=auto \
+                  --enable-perlinterp=yes --enable-luainterp=yes --enable-gui=auto \
                   --enable-gtk2-check --enable-cscope --with-x --prefix=/usr/local
       make VIMRUNTIME=/usr/local/share/vim/vim81
       sudo make install

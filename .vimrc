@@ -192,6 +192,10 @@ inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
+" Terminal
+set splitbelow
+nnoremap <F6> :terminal<CR><C-w>:exe "resize " . (winheight(0) * 2/7)<CR>
+
 " File Tree
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3

@@ -85,6 +85,7 @@ while test $# -gt 0; do
       ;;
     -c|--clean)
       rm -rf vim/
+      rm -rf solarized/
       cd "${0%/*}"
       shift
       ;;

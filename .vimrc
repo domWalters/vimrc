@@ -10,13 +10,13 @@ endif
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'ycm-core/YouCompleteMe'
-call vundle#end()
+"set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin()
+"Plugin 'VundleVim/Vundle.vim'
+"Plugin 'vim-pandoc/vim-pandoc-syntax'
+"Plugin 'vim-pandoc/vim-pandoc'
+"Plugin 'ycm-core/YouCompleteMe'
+"call vundle#end()
 filetype plugin indent on
 " End of Vundle
 
@@ -71,10 +71,13 @@ endif
 " GUI (which always has colors).
 if &t_Co > 2 || has("gui_running")
   set hlsearch " Switch on highlighting the last used search pattern.
-  syntax on
+  syntax enable
   " I like highlighting strings inside C comments.
   " Revert with ":unlet c_comment_strings".
   let c_comment_strings=1
+  set background=dark
+  let g:solarized_termcolors=256
+  colorscheme solarized
 endif
 
 " Only do this part when Vim was compiled with the +eval feature.

@@ -19,11 +19,11 @@ while test $# -gt 0; do
       ;;
     -g|--get)
       git clone https://github.com/vim/vim
+      cd "${0%/*}"
       shift
       ;;
     -v|--vim) #this setting is expected to be followed by an OS (centos, or ubuntu)
       cd vim
-      shift
       if test $# -gt 0; then
         case "$1" in
           ubuntu)
@@ -48,6 +48,8 @@ while test $# -gt 0; do
                   --enable-gtk2-check --enable-cscope --with-x --prefix=/usr/local
       make VIMRUNTIME=/usr/local/share/vim/vim81
       sudo make install
+      cd "${0%/*}"
+      shift
       ;;
     -e|--env)
       # Set up all common vim, vi, and editor aliases
@@ -62,6 +64,7 @@ while test $# -gt 0; do
       # Set up .vimrc and backup/swap/undo directory.
       cp .vimrc ~/.
       mkdir ~/.cache/vim
+      cd "${0%/*}"
       shift
       ;;
     -y|--ycm)
@@ -71,15 +74,23 @@ while test $# -gt 0; do
       vim +PluginInstall +qall
       cd ~/.vim/bundle/YouCompleteMe
       python3 install.py --clang-completer
+      cd "${0%/*}"
+      shift
+      ;;
+    -s|--solarized)
+      mkdir ~/.vim/colors
+      cp solarized/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/.
+      cd "${0%/*}"
       shift
       ;;
     -c|--clean)
       rm -rf vim/
+      cd "${0%/*}"
       shift
       ;;
     -a|--all) #this setting is expected to be followed by an OS (centos, or ubuntu)
       shift
-      ./setup.sh --get --vim $1 --clean --env --ycm
+      ./setup.sh --get --vim $1 --clean --solarized --env --ycm
       echo "Installation complete!"
       exit 0;
       ;;

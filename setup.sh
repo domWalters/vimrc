@@ -49,8 +49,8 @@ while test $# -gt 0; do
         exit 1
       fi
       ./configure --with-features=huge --enable-multibyte --enable-rubyinterp=yes \
-                  --enable-pythoninterp=yes --with-python-config-dir=$dir_start/python2.7/config \
-                  --enable-python3interp=yes --with-python3-config-dir=$dir_start/python3.4/config \
+                  --enable-pythoninterp=no --with-python-config-dir=$dir_start/python2.7/config \
+                  --enable-python3interp=no --with-python3-config-dir=$dir_start/python3.4/config \
                   --enable-perlinterp=yes --enable-luainterp=yes --enable-gui=auto \
                   --enable-gtk2-check --enable-cscope --with-x --prefix=/usr/local
       make VIMRUNTIME=/usr/local/share/vim/vim81
@@ -60,6 +60,7 @@ while test $# -gt 0; do
       ;;
     -e|--env)
       # Set up all common vim, vi, and editor aliases
+      rm /usr/bin/editor /usr/bin/vi /usr/bin/vim
       sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
       sudo update-alternatives --set editor /usr/local/bin/vim
       sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1

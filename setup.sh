@@ -19,6 +19,11 @@ while test $# -gt 0; do
       ;;
     -g|--get)
       git clone https://github.com/vim/vim
+      git clone https://github.com/altercation/solarized
+      git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+      yum install centos-release-scl-rh
+      yum install ncurses-devel libX11-devel xorg-x11-server-Xorg xorg-x11-xauth xorg-x11-apps python27-python-devel
+      yum-builddep vim-enhanced
       cd "${0%/*}"
       shift
       ;;
@@ -70,8 +75,6 @@ while test $# -gt 0; do
       shift
       ;;
     -y|--ycm)
-      # Install Vundle
-      git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
       # Setup YCM
       vim +PluginInstall +qall
       cd ~/.vim/bundle/YouCompleteMe

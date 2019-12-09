@@ -22,15 +22,17 @@ while test $# -gt 0; do
       cd "${0%/*}"
       shift
       ;;
-    -v|--vim) #this setting is expected to be followed by an OS (centos, or ubuntu)
+    -v|--vim)
+      #this setting is expected to be followed by an OS (centos, or ubuntu)
       cd vim
       if test $# -gt 0; then
+        shift
         case "$1" in
           ubuntu)
             dir_start="/usr/lib"
             ;;
           centos)
-            dir_start="/lib64"
+            dir_start="/usr/lib64"
             ;;
           *)
             break
@@ -91,7 +93,7 @@ while test $# -gt 0; do
       ;;
     -a|--all) #this setting is expected to be followed by an OS (centos, or ubuntu)
       shift
-      ./setup.sh --get --vim $1 --clean --solarized --env --ycm
+      ./setup.sh --get --vim $1 --solarized --clean --env --ycm
       echo "Installation complete!"
       exit 0;
       ;;
@@ -102,4 +104,5 @@ while test $# -gt 0; do
   esac
 done
 
+cd "${0%/*}"
 ./setup.sh --help
